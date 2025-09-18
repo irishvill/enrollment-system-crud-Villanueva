@@ -99,11 +99,11 @@ th {
     color: white;
 }
 
-.editBtn { background-color: #008CBA; }
-.delBtn { background-color: #f44336; }
+.editBtn { background-color: #ba0054; }
+.delBtn { background-color: #fa88c9; }
 
-.editBtn:hover { background-color: #007bb5; }
-.delBtn:hover { background-color: #da190b; }
+.editBtn:hover { background-color: #ba0054; }
+.delBtn:hover { background-color: #fa88c9; }
 
 .modal {
     display: none;

@@ -2,22 +2,22 @@
 require_once __DIR__ . '../db.php';
 header('Content-Type: application/json');
 
-$data = json_decode(file_get_contents('php://input'), true);
+$data = json_decode(file_get_contents("php://input"), true);
+$subject_id = $data['subject_id'];
+$subject_name = $data['subject_name'];
+$sem_id = $data['sem_id'];
 
-if (isset($data['subject_id'], $data['subject_name'], $data['sem_id'])) {
-    $subject_id = $data['subject_id'];
-    $subject_name = $data['subject_name'];
-    $sem_id = $data['sem_id'];
+try {
+    $sql = "UPDATE subject_tbl SET subject_name = ?, sem_id = ? WHERE subject_id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$subject_name, $sem_id, $subject_id]);
 
-    try {
-        $sql = "UPDATE subject_tbl SET subject_name = ?, sem_id = ? WHERE subject_id = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$subject_name, $sem_id, $subject_id]);
-        echo json_encode(['success' => true, 'message' => 'Subject updated successfully!']);
-    } catch (PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Error updating subject: ' . $e->getMessage()]);
+    if ($stmt->rowCount() > 0) {
+        echo json_encode(["success" => true, "message" => "Subject updated successfully."]);
+    } else {
+        echo json_encode(["success" => false, "message" => "No changes made or subject not found."]);
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid input.']);
+} catch (PDOException $e) {
+    echo json_encode(["success" => false, "message" => "Database error: " . $e->getMessage()]);
 }
 ?>
