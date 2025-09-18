@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Enrollment System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+        <div class="header">
+            <h1>Student Enrollment System</h1>
+            <nav class="nav">
+                <button id="students-btn" onclick="showSection('students')">Students</button>
+                <button id="programs-btn" onclick="showSection('programs')">Programs</button>
+                <button id="years-semesters-btn" onclick="showSection('years-semesters')">Years & Semesters</button>
+                <button id="subjects-btn" onclick="showSection('subjects')">Subjects</button>
+                <button id="enrollments-btn" onclick="showSection('enrollments')">Enrollments</button>
+            </nav>
+        </div>
+
+        <section id="students" class="content active">
+            <h2>Student Management</h2>
+            <form id="addStudentForm">
+                <input type="text" name="first_name" placeholder="First Name" required>
+                <input type="text" name="middle_name" placeholder="M.I." required>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+                <input type="text" name="program_id" placeholder="Program ID" required>
+                <input type="number" name="allowance" placeholder="Allowance" required>
+                <button type="submit">Add Student</button>
+            </form>
+            <table id="studentsTable"></table>
+            
+            <div id="editStudentModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Edit Student</h2>
+                    <form id="editStudentForm">
+                        <input type="hidden" name="id" id="edit-stud-id">
+                        <input type="text" name="first_name" id="edit-first-name" placeholder="First Name" required>
+                        <input type="text" name="middle_name" id="edit-middle-name" placeholder="M.I." required>
+                        <input type="text" name="last_name" id="edit-last-name" placeholder="Last Name" required>
+                        <input type="text" name="program_id" id="edit-program-id" placeholder="Program ID" required>
+                        <input type="number" name="allowance" id="edit-allowance" placeholder="Allowance" required>
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs" class="content">
+            <h2>Program Management</h2>
+            <form id="addProgramForm">
+                <input type="text" name="program_name" placeholder="Program Name" required>
+                <input type="text" name="ins_id" placeholder="Institute ID" required>
+                <button type="submit">Add Program</button>
+            </form>
+            <table id="programsTable"></table>
+        </section>
+
+        <section id="years-semesters" class="content">
+          <h2>Years & Semesters Management</h2>
+          <div class="form-container">
+            <div class="form-years">
+              <h3>Year Management</h3>
+              <form id="addYearForm">
+                  <input type="number" name="year_from" placeholder="Year From" required>
+                  <input type="number" name="year_to" placeholder="Year To" required>
+                  <button type="submit">Add Year</button>
+              </form>
+              <table id="yearsTable"></table>
+            </div>
+            <div class="form-semesters">
+              <h3>Semester Management</h3>
+              <form id="addSemesterForm">
+                  <input type="text" name="sem_name" placeholder="Semester Name" required>
+                  <input type="number" name="year_id" placeholder="Year ID" required>
+                  <button type="submit">Add Semester</button>
+              </form>
+              <table id="semestersTable"></table>
+            </div>
+          </div>
+        </section>
+
+        <section id="subjects" class="content">
+            <h2>Subject Management</h2>
+            <form id="addSubjectForm">
+                <input type="text" name="subject_name" placeholder="Subject Name" required>
+                <input type="text" name="sem_id" placeholder="Semester ID" required>
+                <button type="submit">Add Subject</button>
+            </form>
+            <table id="subjectsTable"></table>
+        </section>
+
+        <section id="enrollments" class="content">
+            <h2>Enrollment Management</h2>
+            <form id="addEnrollmentForm">
+                <input type="text" name="stud_id" placeholder="Student ID" required>
+                <input type="text" name="subject_id" placeholder="Subject ID" required>
+                <button type="submit">Enroll</button>
+            </form>
+            <table id="enrollmentsTable"></table>
+        </section>
+    </div>
+    
+    <div id="messageBox" class="message-box">
+        <p id="messageText"></p>
+        <button onclick="document.getElementById('messageBox').style.display='none'">OK</button>
+    </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
